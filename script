@@ -1,0 +1,56 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/stark303test/bct-task1.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh 'docker build -t my-php-app .'
+                }
+            }
+        }
+        stage('Push Docker Image to ECR') {
+            steps {
+                script {
+                    def ecrUrl = '503752161731.dkr.ecr.us-east-1.amazonaws.com/btc/my-php-app'
+                    def credentials = 'aws-credentials-id'
+                    withCredentials([usernamePassword(credentialsId: credentials, usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                        sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ecrUrl}"
+                        sh "docker tag my-php-app:latest ${ecrUrl}:latest"
+                        sh "docker push ${ecrUrl}:latest"
+                    }
+                }
+            }
+        }
+        stage('Deploy to EC2') {
+            steps {
+                script {
+                    def ec2Ip = '44.202.20.109'
+                    def ecrUrl = '503752161731.dkr.ecr.us-east-1.amazonaws.com/btc/my-php-app'
+                    def awsCredentials = 'aws-credentials-id'
+                    def sshCredentials = 'ec2-ssh-key'
+                    
+                    withCredentials([usernamePassword(credentialsId: awsCredentials, usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                        withCredentials([sshUserPrivateKey(credentialsId: sshCredentials, keyFileVariable: 'SSH_KEY')]) {
+                            sh """
+                            ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no ubuntu@${ec2Ip} '
+                            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ecrUrl} && \
+                            if docker ps -q -f name=my-php-app; then
+                                docker stop my-php-app && docker rm my-php-app
+                            elif docker ps -a -q -f name=my-php-app; then
+                                docker rm my-php-app
+                            fi && \
+                            docker pull ${ecrUrl}:latest && \
+                            docker run -d -p 80:80 --name my-php-app ${ecrUrl}:latest'
+                            """
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
