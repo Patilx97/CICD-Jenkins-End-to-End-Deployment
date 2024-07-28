@@ -1,5 +1,12 @@
 # PHP Web Application Deployment with Docker and Jenkins
 
+# Stages of the pipeline:
+
+**Checkout:** Cloning the code from a Git repository.  
+**Build Docker Image:** Building a Docker image of the PHP application.  
+**Push docker image to ECR:** Push the image to Amazon ECR.  
+**Deploy to EC2:** Deploying the Docker container to an EC2 instance.
+
 ## Overview
 
 This repository demonstrates the process of deploying a PHP web application with MySQL(RDS) integration, Dockerizing the application, and setting up a CI/CD pipeline using Jenkins. It includes steps to:
@@ -8,13 +15,6 @@ This repository demonstrates the process of deploying a PHP web application with
 2. Set up RDS database  
 3. Set up ECR  
 4. Set Up CI/CD Pipeline with Jenkins
-
-# Stages of the pipeline:
-
-**Checkout:** Cloning the code from a Git repository.  
-**Build Docker Image:** Building a Docker image of the PHP application.  
-**Push docker image to ECR:** Push the image to Amazon ECR.  
-**Deploy to EC2:** Deploying the Docker container to an EC2 instance.
 
 ## 1. Set Up EC2 instances
 
