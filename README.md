@@ -23,6 +23,7 @@ This repository demonstrates the process of deploying a PHP web application with
 
 1. Launch a new RDS instance with MySQL.
 2. Note the RDS endpoint, username, and password.
+3. Configure `submit.php` file according to RDS.
 
 ## 3. Setup ECR
 
@@ -33,7 +34,7 @@ This repository demonstrates the process of deploying a PHP web application with
 
 ### Configure Jenkins
 
-Launch build server and start jenkins, select default plugins on startup
+Launch build instance and on 1st jenkins startup, select default plugins  
 
 Configure plugins in Jenkins:
 Go to Manage Jenkins > install the plugins: Docker, SSH
@@ -47,7 +48,8 @@ Go to Jenkins dashboard and click New Item > Pipeline > OK
 
 Configure pipeline:
 In build option, Select "GITscm polling" checkbox
-In script section, paste the groovy script in shared in this repository
+In script section, paste the groovy script from `script` file 
+Changes: Replace GitHub Repository in "checkout stage", ECR URI in push and "deploy stage", Replace private ip address of your deploy instance in "deploy stage"
 
 Configure GitHub Webhook:
 
