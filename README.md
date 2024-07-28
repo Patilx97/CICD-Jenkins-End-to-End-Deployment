@@ -1,12 +1,5 @@
 # PHP Web Application Deployment with Docker and Jenkins
 
-# Stages of the pipeline:
-
-**Checkout:** Cloning the code from a Git repository.  
-**Build Docker Image:** Building a Docker image of the PHP application.  
-**Push docker image to ECR:** Push the image to Amazon ECR.  
-**Deploy to EC2:** Deploying the Docker container to an EC2 instance.
-
 ## Overview
 
 This repository demonstrates the process of deploying a PHP web application with MySQL(RDS) integration, Dockerizing the application, and setting up a CI/CD pipeline using Jenkins. It includes steps to:
@@ -63,5 +56,12 @@ Configure GitHub Webhook:
 Go to GitHub > Repository settings > Webhooks:
 Payload URL: http://jenkins_server_public_ip:8080/github-webhook/
 Content type: application/json
+
+## Stages of the pipeline:
+
+**Checkout:** Cloning the code from a Git repository.  
+**Build Docker Image:** Building a Docker image of the PHP application.  
+**Push docker image to ECR:** Push the image to Amazon ECR.  
+**Deploy to EC2:** Deploying the Docker container to an EC2 instance.
 
 Now, the pipeline will automatically trigger whenever changes are made in the GitHub repository.
