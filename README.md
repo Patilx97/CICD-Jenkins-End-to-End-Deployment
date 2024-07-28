@@ -4,45 +4,42 @@
 
 This repository demonstrates the process of deploying a PHP web application with MySQL(RDS) integration, Dockerizing the application, and setting up a CI/CD pipeline using Jenkins. It includes steps to:
 
-1. Set up an EC2 instance and RDS database.
-2. Set Up CI/CD Pipeline with Jenkins
-3. Deploy the application to an EC2 instance.
+1. Set up an EC2 instance  
+2. Set up RDS database  
+3. Set up ECR  
+4. Set Up CI/CD Pipeline with Jenkins
 
-## Prerequisites
-
-Before you begin, ensure you have:
-
-- An AWS account
-- Jenkins installed on a build server
-- Docker installed on both the build and deployment servers
-- AWS CLI configured on the build & Deployment server
-
-## 1. Set Up EC2 and RDS
+## 1. Set Up EC2 instances
 
 ### Create EC2 Instance
 
-1. Launch an EC2 instance using Ubuntu.
-2. SSH into the instance.
-
-### Create RDS Instance
+1. Launch two EC2 instances using Ubuntu.
+   a. Build instance  
+   b. Deployment instance
+2. Install Jenkins, Docker, AWS CLI on a build server and configure it
+3. Install Docker, AWS CLI on a deployment server and configure it
+   
+## 2. Create RDS Instance
 
 1. Launch a new RDS instance with MySQL.
 2. Note the RDS endpoint, username, and password.
 
+## 3. Setup ECR
 
+1. Create a repository
+2. Note the repository URI
 
-## 2. Set Up CI/CD Pipeline with Jenkins
+## 4. Set Up CI/CD Pipeline with Jenkins
 
 ### Configure Jenkins
 
-Install Jenkins and necessary plugins:
+Launch build server and start jenkins, select default plugins on startup
 
-Go to Jenkins dashboard and install the following plugins: Docker, SSH
+Configure plugins in Jenkins:
+Go to Manage Jenkins > install the plugins: Docker, SSH
 
 Configure credentials in Jenkins:
-
-Go to Manage Jenkins > Credentials > Global > Add Credentials.
-Add AWS credentials and SSH key pair.
+Go to Manage Jenkins > Credentials > Global > Add Credentials > Add AWS credentials and SSH key pair.
 
 Create a new pipeline:
 
@@ -57,3 +54,13 @@ Configure GitHub Webhook:
 Go to GitHub > Repository settings > Webhooks:
 Payload URL: http://jenkins_server_public_ip:8080/github-webhook/
 Content type: application/json
+
+
+# Stages of the pipeline:
+
+**Checkout:** Cloning the code from a Git repository.
+**Build Docker Image:** Building a Docker image of the PHP application.
+**Push docker image to ECR:** Push the image to Amazon ECR.
+**Deploy to EC2:** Deploying the Docker container to an EC2 instance.
+
+Now, the pipeline will automatically trigger whenever changes are made in the GitHub repository.
