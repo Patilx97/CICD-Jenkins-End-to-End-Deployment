@@ -16,8 +16,8 @@ This repository demonstrates the process of deploying a PHP web application with
 1. Launch two EC2 instances using Ubuntu  
    a. Build instance  
    b. Deployment instance
-2. Install Jenkins, Docker, AWS CLI on a build server and configure it
-3. Install Docker, AWS CLI on a deployment server and configure it
+2. Install Jenkins, Docker, AWS CLI on a build instance and configure it
+3. Install Docker, AWS CLI on a deployment instance and configure it
    
 ## 2. Create RDS Instance
 
