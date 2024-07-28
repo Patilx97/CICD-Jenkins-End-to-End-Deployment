@@ -29,7 +29,7 @@ pipeline {
         stage('Deploy to EC2') {
             steps {
                 script {
-                    def ec2Ip = '44.202.20.109'
+                    def ec2Ip = '44.202.xx.xx'
                     def ecrUrl = 'xxxx.dkr.ecr.us-east-1.amazonaws.com/my-php-app' // ECR Endpoint
                     def awsCredentials = 'aws-credentials-id'
                     def sshCredentials = 'ec2-ssh-key'
