@@ -67,8 +67,8 @@ $dbname = "mydb"; // RDS Database name
       - In the Pipeline section, choose Pipeline script and paste the Groovy script from your `script` file. 
       - Adjust the Groovy script:
         - Replace the GitHub repository URL in the checkout stage
-        - Replace the ECR URI in the push & deploy stage."
-        - Replace the private IP address of your deployment instance in the deploy stage.
+        - Replace the ECR URI in the push & deploy stage
+        - Replace the private IP address of your deployment instance in the deploy stage
 
 5. Configure GitHub Webhook:
 
