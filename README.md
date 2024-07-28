@@ -31,7 +31,7 @@ This repository demonstrates the process of deploying a PHP web application with
 $servername = "database-1.xxxx.us-east-1.rds.amazonaws.com"; // RDS Endpoint
 $username = "admin"; // RDS username
 $password = "Pass"; // RDS Password
-$dbname = "mydb"; // RDS Database
+$dbname = "mydb"; // RDS Database name
 ```
 
 ## 3. Setup ECR
