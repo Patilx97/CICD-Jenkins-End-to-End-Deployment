@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/stark303test/bct-task1.git'
+                git 'https://github.com/xxxxxx' // Git repository
             }
         }
         stage('Build Docker Image') {
@@ -16,7 +16,7 @@ pipeline {
         stage('Push Docker Image to ECR') {
             steps {
                 script {
-                    def ecrUrl = '503752161731.dkr.ecr.us-east-1.amazonaws.com/btc/my-php-app'
+                    def ecrUrl = 'xxxx.dkr.ecr.us-east-1.amazonaws.com/my-php-app' // ECR Endpoint
                     def credentials = 'aws-credentials-id'
                     withCredentials([usernamePassword(credentialsId: credentials, usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ecrUrl}"
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     def ec2Ip = '44.202.20.109'
-                    def ecrUrl = '503752161731.dkr.ecr.us-east-1.amazonaws.com/btc/my-php-app'
+                    def ecrUrl = 'xxxx.dkr.ecr.us-east-1.amazonaws.com/my-php-app' // ECR Endpoint
                     def awsCredentials = 'aws-credentials-id'
                     def sshCredentials = 'ec2-ssh-key'
                     
