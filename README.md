@@ -30,45 +30,6 @@ Before you begin, ensure you have:
 1. Launch a new RDS instance with MySQL.
 2. Note the RDS endpoint, username, and password.
 
-### Configure EC2
-
-1. Install the LAMP stack:
-
-    ```bash
-    sudo apt-get update
-    sudo apt-get install apache2 php libapache2-mod-php php-mysql mysql-client -y
-    ```
-
-2. Clone the repository:
-
-    ```bash
-    git clone https://github.com/stark303test/bct-task1.git
-    ```
-
-3. Move files to `/var/www/html`:
-
-    ```bash
-    sudo mv bct-task1/index.php bct-task1/submit.php /var/www/html/
-    ```
-
-4. Ensure `submit.php` contains the correct RDS configuration:
-
-    ```php
-    $servername = "database-1.xx.us-east-1.rds.amazonaws.com";
-    $username = "admin";
-    $password = "Pass";
-    $dbname = "mydb";
-    ```
-
-5. Test the PHP application:
-
-    - Access the instance’s public IP in a browser.
-    - Submit a value in the "Name" field.
-    - Verify data is stored in the RDS database using:
-
-    ```bash
-    mysql -h RDS_ENDPOINT -P 3306 -u admin -p
-    ```
 
 ## 2. Dockerize the PHP Application
 
