@@ -44,25 +44,25 @@ $dbname = "mydb"; // RDS Database name
 ### Configure Jenkins
 
 1. Initial setup:
-- Launch the build instance and on the first Jenkins startup, select the default plugins. 
+  - Launch the build instance and on the first Jenkins startup, select the default plugins. 
 
 2. Install plugins:
-- Go to Manage Jenkins > Manage plugins > Available tab
-- install the following plugins:
-  - Docker
-  - SSH
+  - Go to Manage Jenkins > Manage plugins > Available tab
+  - install the following plugins:
+    - Docker
+    - SSH
 
 3. Configure credentials:
-- Go to Manage Jenkins > Manage Credentials > Global > Add Credentials
-  - Add AWS credentials
-  - SSH key pair.
+  - Go to Manage Jenkins > Manage Credentials > Global > Add Credentials
+    - Add AWS credentials
+    - SSH key pair.
 
 4. Create a new pipeline:
 
-- Go to Jenkins dashboard and click New Item > Pipeline > OK.
+  - Go to Jenkins dashboard and click New Item > Pipeline > OK.
 
-  - In build option, Select "GITscm polling" checkbox
-  - In script section, paste the groovy script from `script` file 
+    - In build option, Select "GITscm polling" checkbox
+    - In script section, paste the groovy script from `script` file 
     - Changes: Replace GitHub Repository in "checkout stage", ECR URI in push and "deploy stage", Replace private ip address of your deploy instance in "deploy stage"
 
 5. Configure GitHub Webhook:
