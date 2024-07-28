@@ -64,7 +64,7 @@ $dbname = "mydb"; // RDS Database name
     - Build triggers:
       - Check "GitHub hook trigger for GITScm polling"
     - Pipeline:
-      - In the Pipeline section, choose Pipeline script and paste the Groovy script from your script file. 
+      - In the Pipeline section, choose Pipeline script and paste the Groovy script from your `script` file. 
       - Adjust the Groovy script:
         - Replace the GitHub repository URL in the checkout stage
         - Replace the ECR URI in the push & deploy stage."
