@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository demonstrates the process of deploying a PHP web application with MySql (RDS) integration, Dockerizing the application, and setting up a CI/CD pipeline using Jenkins. It includes steps to:
+This repository demonstrates the process of deploying a PHP web application with MySql integration, Dockerizing the application, and setting up a CI/CD pipeline using Jenkins. It includes steps to:
 
 1. Set up an EC2 instance  
 2. Set up RDS database  
