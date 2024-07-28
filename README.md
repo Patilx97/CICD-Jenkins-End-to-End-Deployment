@@ -14,10 +14,8 @@ This repository demonstrates the process of deploying a PHP web application with
 ### Create EC2 Instance
 
 1. Launch two EC2 instances using Ubuntu  
-   a. Build instance  
-   b. Deployment instance
    
-3. Build instance
+2. Build instance
    - Install Jenkins, Docker, and AWS CLI.
    - Configure AWS CLI.
      
