@@ -31,39 +31,30 @@ Before you begin, ensure you have:
 2. Note the RDS endpoint, username, and password.
 
 
-## 2. Dockerize the PHP Application
 
-### Dockerfile
+## 2. Set Up CI/CD Pipeline with Jenkins
 
-Ensure the `Dockerfile` in your repository contains:
-
-```Dockerfile
-FROM php:7.4-apache
-RUN docker-php-ext-install mysqli
-COPY . /var/www/html/
-EXPOSE 80
-```
-
-3. Set Up CI/CD Pipeline with Jenkins
-Configure Jenkins
-Launch a new EC2 instance for Jenkins.
-
-Open port 8080 for Jenkins.
+### Configure Jenkins
 
 Install Jenkins and necessary plugins:
 
-Go to Jenkins dashboard and install the following plugins:
-Docker Pipeline
-GitHub Integration
+Go to Jenkins dashboard and install the following plugins: Docker, SSH
+
 Configure credentials in Jenkins:
 
 Go to Manage Jenkins > Credentials > Global > Add Credentials.
 Add AWS credentials and SSH key pair.
+
 Create a new pipeline:
 
-Go to Jenkins dashboard and click New Item > Pipeline > OK.
+Go to Jenkins dashboard and click New Item > Pipeline > OK
+
+Configure pipeline:
+In build option, Select "GITscm polling" checkbox
+In script section, paste the groovy script in shared in this repository
+
 Configure GitHub Webhook:
 
-Go to GitHub > Settings > Webhooks:
-Payload URL: http://jenkins_ip:8080/github-webhook/
+Go to GitHub > Repository settings > Webhooks:
+Payload URL: http://jenkins_server_public_ip:8080/github-webhook/
 Content type: application/json
