@@ -42,3 +42,28 @@ FROM php:7.4-apache
 RUN docker-php-ext-install mysqli
 COPY . /var/www/html/
 EXPOSE 80
+```
+
+3. Set Up CI/CD Pipeline with Jenkins
+Configure Jenkins
+Launch a new EC2 instance for Jenkins.
+
+Open port 8080 for Jenkins.
+
+Install Jenkins and necessary plugins:
+
+Go to Jenkins dashboard and install the following plugins:
+Docker Pipeline
+GitHub Integration
+Configure credentials in Jenkins:
+
+Go to Manage Jenkins > Credentials > Global > Add Credentials.
+Add AWS credentials and SSH key pair.
+Create a new pipeline:
+
+Go to Jenkins dashboard and click New Item > Pipeline > OK.
+Configure GitHub Webhook:
+
+Go to GitHub > Settings > Webhooks:
+Payload URL: http://jenkins_ip:8080/github-webhook/
+Content type: application/json
