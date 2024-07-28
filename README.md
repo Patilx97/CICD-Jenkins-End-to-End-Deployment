@@ -1,4 +1,4 @@
-# PHP Web Application Deployment with Docker and Jenkins
+# PHP Web Application Deployment with Docker, Jenkins, and Amazon ECR
 
 ## Overview
 
