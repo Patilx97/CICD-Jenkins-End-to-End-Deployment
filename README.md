@@ -36,31 +36,36 @@ $dbname = "mydb"; // RDS Database name
 
 ## 3. Setup ECR
 
-1. Create a repository
+1. Create an Amazon ECR repository
 2. Note the repository URI
 
 ## 4. Set Up CI/CD Pipeline with Jenkins
 
 ### Configure Jenkins
 
-Launch build instance and on 1st jenkins startup, select default plugins  
+1. Initial setup:
+- Launch the build instance and on the first Jenkins startup, select the default plugins. 
 
-Configure plugins in Jenkins:
-Go to Manage Jenkins > install the plugins: Docker, SSH
+2. Install plugins:
+- Go to Manage Jenkins > Manage plugins > Available tab
+- install the following plugins:
+  - Docker
+  - SSH
 
-Configure credentials in Jenkins:
-Go to Manage Jenkins > Credentials > Global > Add Credentials > Add AWS credentials and SSH key pair.
+3. Configure credentials:
+- Go to Manage Jenkins > Manage Credentials > Global > Add Credentials
+  - Add AWS credentials
+  - SSH key pair.
 
-Create a new pipeline:
+4. Create a new pipeline:
 
-Go to Jenkins dashboard and click New Item > Pipeline > OK
+- Go to Jenkins dashboard and click New Item > Pipeline > OK.
 
-Configure pipeline:
-In build option, Select "GITscm polling" checkbox
-In script section, paste the groovy script from `script` file 
-Changes: Replace GitHub Repository in "checkout stage", ECR URI in push and "deploy stage", Replace private ip address of your deploy instance in "deploy stage"
+  - In build option, Select "GITscm polling" checkbox
+  - In script section, paste the groovy script from `script` file 
+    - Changes: Replace GitHub Repository in "checkout stage", ECR URI in push and "deploy stage", Replace private ip address of your deploy instance in "deploy stage"
 
-Configure GitHub Webhook:
+5. Configure GitHub Webhook:
 
 Go to GitHub > Repository settings > Webhooks:
 Payload URL: http://jenkins_server_public_ip:8080/github-webhook/
