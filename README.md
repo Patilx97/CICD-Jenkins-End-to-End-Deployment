@@ -56,7 +56,7 @@ Before you begin, ensure you have:
     ```php
     $servername = "database-1.xx.us-east-1.rds.amazonaws.com";
     $username = "admin";
-    $password = "Bitcot1122";
+    $password = "Pass";
     $dbname = "mydb";
     ```
 
